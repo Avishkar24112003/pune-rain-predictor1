@@ -40,7 +40,7 @@ section = st.sidebar.radio(
 if section == "Project Info":
     st.header("🔹 Project Overview")
     st.write("""
-    - **Objective**: Predict if it will rain today based on temperature, humidity, pressure, and windspeed.
+    - **Objective**: Predict if it will rain today based on temperature, humidity, and pressure.
     - **Data**: Historical weather data of Pune.
     - **Models Used**: Linear Regression, Logistic Regression, Random Forest.
     - **Technologies**: Python, scikit-learn, Streamlit.
@@ -54,20 +54,18 @@ elif section == "Data Visualization":
     # Correlation Heatmap
     st.subheader("Correlation Heatmap")
     fig, ax = plt.subplots(figsize=(8,6))
+
     # Keep only numeric columns for correlation
-    # Keep only numeric columns for correlation
-numeric_data = data.select_dtypes(include=[np.number])
+    numeric_data = data.select_dtypes(include=[np.number])
 
-# Check if there are numeric columns before plotting
-if numeric_data.shape[1] > 0:
-    sns.heatmap(numeric_data.corr(), annot=True, cmap='coolwarm', ax=ax)
-    st.pyplot(fig)
-else:
-    st.error("No numeric columns found in the dataset for correlation heatmap.")
+    # Check if there are numeric columns before plotting
+    if numeric_data.shape[1] > 0:
+        sns.heatmap(numeric_data.corr(), annot=True, cmap='coolwarm', ax=ax)
+        st.pyplot(fig)
+    else:
+        st.error("No numeric columns found in the dataset for correlation heatmap.")
 
-    st.pyplot(fig)
-
-    # Pairplot sample (if needed)
+    # Pairplot sample (optional static image placeholder)
     st.subheader("Feature Distributions (Pairplot)")
     st.image("https://seaborn.pydata.org/_images/function_pairplot-1.png",
              caption="(You can generate your own pairplot image from your dataset and display it here)")
