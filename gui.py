@@ -54,7 +54,16 @@ elif section == "Data Visualization":
     # Correlation Heatmap
     st.subheader("Correlation Heatmap")
     fig, ax = plt.subplots(figsize=(8,6))
-    sns.heatmap(data.corr(), annot=True, cmap='coolwarm', ax=ax)
+    # Keep only numeric columns for correlation
+numeric_data = data.select_dtypes(include=[np.number])
+
+# Check if there are numeric columns before plotting
+if numeric_data.shape[1] > 0:
+    sns.heatmap(numeric_data.corr(), annot=True, cmap='coolwarm', ax=ax)
+    st.pyplot(fig)
+else:
+    st.error("No numeric columns found in the dataset for correlation heatmap.")
+
     st.pyplot(fig)
 
     # Pairplot sample (if needed)
