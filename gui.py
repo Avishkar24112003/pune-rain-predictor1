@@ -74,9 +74,13 @@ elif section == "Data Visualization":
 elif section == "Model Evaluation":
     st.header("🔹 Model Evaluation")
 
-    # Split data
-    X = data[['humidity', 'temperature', 'pressure']]
+    # Debug: Display actual columns in your dataset
+    st.write("Columns in your dataset:", data.columns.tolist())
+
+    # Adjust columns based on actual dataset
+    X = data[['humidity', 'temp', 'pressure']]
     y = data['rain']
+
     from sklearn.model_selection import train_test_split
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
