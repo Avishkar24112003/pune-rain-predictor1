@@ -55,6 +55,7 @@ elif section == "Data Visualization":
     st.subheader("Correlation Heatmap")
     fig, ax = plt.subplots(figsize=(8,6))
     # Keep only numeric columns for correlation
+    # Keep only numeric columns for correlation
 numeric_data = data.select_dtypes(include=[np.number])
 
 # Check if there are numeric columns before plotting
